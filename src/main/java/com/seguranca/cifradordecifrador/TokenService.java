@@ -11,7 +11,7 @@ public class TokenService {
     private static String specials = " ,.-";
     private static final String RULES = alphaUpper+alphaLower+numbers+specials;
 
-    String cifrar(String text, String[] key) {
+    String encrypt(String text, String[] key) {
         StringBuilder encryptedText = new StringBuilder();
         int keyIndex = 0;
 
@@ -32,7 +32,7 @@ public class TokenService {
         return encryptedText.toString();
     }
 
-    String decifrar(String encryptedText, String[] key) {
+    String decrypt(String encryptedText, String[] key) {
         StringBuilder decryptedText = new StringBuilder();
         int keyIndex = 0;
 

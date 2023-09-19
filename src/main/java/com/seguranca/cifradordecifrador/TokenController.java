@@ -17,8 +17,8 @@ public class TokenController {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping(path = "/cifrar")
-    public String cifrador(@RequestBody TokenModel request) {
+    @PostMapping(path = "/cifrador")
+    public String encrypt(@RequestBody TokenModel request) {
         String text = request.getText();
         String[] key = request.getKey();
 
@@ -30,7 +30,7 @@ public class TokenController {
             throw new EmptyKeyException("Chaves vazias não são permitidas.");
         }
 
-        String result = tokenService.cifrar(text, key);
+        String result = tokenService.encrypt(text, key);
 
         if (result == null) {
             throw new InvalidTextException("Cifragem falhou, verifique seu texto, ele pode não está adequado as regras.");
@@ -39,8 +39,8 @@ public class TokenController {
         return result;
     }
 
-    @PostMapping(path = "/decifrar")
-    public String decifrador(@RequestBody TokenModel request) {
+    @PostMapping(path = "/decifrador")
+    public String decrypt(@RequestBody TokenModel request) {
         String text = request.getText();
         String[] key = request.getKey();
 
@@ -52,7 +52,7 @@ public class TokenController {
             throw new EmptyKeyException("Chaves vazias não são permitidas.");
         }
 
-        String result = tokenService.decifrar(text, key);
+        String result = tokenService.decrypt(text, key);
 
         if (result == null) {
             throw new InvalidTextException("Cifragem falhou, verifique seu texto, ele pode não está adequado as regras.");

@@ -11,15 +11,13 @@ public class GlobalExecption extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InvalidTextException.class)
     public ResponseEntity<Object> handleInvalidTextException(InvalidTextException ex) {
-        // Defina a mensagem de erro e o código de status adequados
-        ErrorMessage errorMessage = new ErrorMessage("Texto inválido", ex.getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(),"Texto inválido", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
     @ExceptionHandler(EmptyKeyException.class)
     public ResponseEntity<Object> handleEmptyKeyException(EmptyKeyException ex) {
-        // Defina a mensagem de erro e o código de status adequados
-        ErrorMessage errorMessage = new ErrorMessage("Chave vazia", ex.getMessage());
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(),"Chave vazia", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 }

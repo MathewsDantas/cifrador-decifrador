@@ -2,6 +2,9 @@ package com.seguranca.cifradordecifrador;
 
 import com.seguranca.cifradordecifrador.exceptions.EmptyKeyException;
 import com.seguranca.cifradordecifrador.exceptions.InvalidTextException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +21,7 @@ public class TokenController {
     private TokenService tokenService;
 
     @PostMapping(path = "/cifrador")
+    @Operation(summary = "cifrar", description = "Cifragem da senha")
     public String encrypt(@RequestBody TokenModel request) {
         String text = request.getText();
         String[] key = request.getKey();
@@ -40,6 +44,7 @@ public class TokenController {
     }
 
     @PostMapping(path = "/decifrador")
+    @Operation(summary = "decifrar", description = "Decifragem da senha")
     public String decrypt(@RequestBody TokenModel request) {
         String text = request.getText();
         String[] key = request.getKey();
